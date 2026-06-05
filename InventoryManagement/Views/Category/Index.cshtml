@@ -1,0 +1,35 @@
+﻿@model X.PagedList.IPagedList<Category>
+@using X.PagedList.Mvc.Core
+<partial name="_notifications" />
+<h2 class="mb-4">Categories</h2>
+<form method="get" class="mb-3">
+    <input type="text" name="search" class="form-control" placeholder="Search..." />
+</form>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add Category</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th style="width:200px;">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

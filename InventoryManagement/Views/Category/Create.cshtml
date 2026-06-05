@@ -1,0 +1,20 @@
+﻿@model Category
+
+<h2>Create Category</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" placeholder="Enter category name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

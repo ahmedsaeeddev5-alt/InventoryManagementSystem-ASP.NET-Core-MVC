@@ -1,0 +1,41 @@
+﻿@model Product
+
+<h2>Create Product</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Price</label>
+        <input  asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Category</label>
+        <select asp-for="CategoryId" class="form-control">
+            <option value="">Select Category</option>
+            @foreach (var cat in ViewBag.Categories)
+            {
+                <option value="@cat.Id">@cat.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Image</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+
+    <button class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
